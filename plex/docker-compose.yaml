@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /home/adiaz/plex/config:/config  # Replace with your volume
+      - /mnt/media/tv:/tv                # Replace with your volume
+      - /mnt/media/movies:/movies        # Replace with your volume
+    restart: unless-stopped
