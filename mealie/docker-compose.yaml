@@ -1,1 +1,23 @@
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest # 
+    container_name: mealie-lite
+    restart: always
+    ports:
+        - "9925:9000" # 
+    deploy:
+      resources:
+        limits:
+          memory: 1000M # 
+    volumes:
+      - /volume2/Home_Media/apps/mealie/mealie-data:/app/data/ # Replace with your volume
+    environment:
+      # Set Backend ENV Variables Here
+      ALLOW_SIGNUP: "false"
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Madrid
+      BASE_URL: https://mealie.yourdomain.com
 
+volumes:
+  mealie-data:
